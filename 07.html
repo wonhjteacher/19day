@@ -37,7 +37,13 @@
         const selectedClass = 'on';
       
          function init() {
-
+            tabs.forEach((tab) => {
+                tab.addEventListener('click',(e) => {
+                    let select = tab.dataset.tab ;
+                    updateTitle(tab)
+                    updateContent(select)
+                })
+            })
          }
 
          function updateTitle(select){
@@ -46,15 +52,20 @@
                     tab.classList.remove(selectedClass);
                 }
             })
-         }
+            select.classList.add(selectedClass)
+         } // updateTitle
 
          function updateContent(select){
             contents.forEach((content) => {
                 if(content && content.classList.contains(selectedClass)){
                     content.classList.remove(selectedClass);
                 }
+                let data = content.dataset.content;
+                if(data === select ){
+                    content.classList.add(selectedClass);
+                }
             })
-         }
+         } // updateContent
 
          init();
     </script>
